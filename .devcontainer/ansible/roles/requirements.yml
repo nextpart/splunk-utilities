@@ -4,3 +4,4 @@ collections: {}
 roles:
   - andrewrothstein.starship
   - gantsign.oh-my-zsh
+  - geerlingguy.packer

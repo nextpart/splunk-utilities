@@ -7,6 +7,7 @@
     - zsh_fzf_version: 0.17.4
   roles:
     - role: andrewrothstein.starship
+    - role: geerlingguy.packer
     - role: gantsign.oh-my-zsh
       users:
         - username: "{{ username }}"
