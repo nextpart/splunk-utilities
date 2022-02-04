@@ -1,0 +1,12 @@
+{
+    "files.exclude": {
+      "**/.DS_Store": true,
+      "**/.git": true
+    },
+    "files.watcherExclude": {
+      "**/.git/objects/**": true,
+      "**/.git/subtree-cache/**": true,
+      "**/.cache/**": true
+    },
+    "editor.wordWrap": "on"
+}

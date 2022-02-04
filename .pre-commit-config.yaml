@@ -1,0 +1,15 @@
+# PRE COMMIT CONFIGURATION FILE
+# ---------------------------------------------------------
+
+# The pre-commit file serves only to detect formatting errors or
+# similar and is not intended to change the code by e.g. sorting
+# imports, because that is what the lint in tox is for.
+
+repos:
+  # Common stuff and checks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+    hooks:
+      - id: check-merge-conflict # Check for files that contain merge conflict strings.
+      - id: trailing-whitespace # This hook trims trailing whitespace.
+      - id: end-of-file-fixer # Ensures that a file is either empty, or ends with one newline.
