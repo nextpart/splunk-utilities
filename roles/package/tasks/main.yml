@@ -1,0 +1,38 @@
+---
+# tasks file for packager
+- name: apt cache & package update with subsequent autoremove.
+  apt:
+    upgrade: safe
+    state: present
+    autoremove: true
+    update_cache: true
+    force_apt_get: true
+  # when: ansible_os_family == "Debian"
+  tags:
+    - update
+
+- name: Add users with a bash shell, appending the group 'sudo' to the user's groups
+  ansible.builtin.user:
+    name: "splunk"
+    shell: /bin/bash
+
+# - name: Adduser to sudoers file without password
+#   ansible.builtin.lineinfile:
+#     dest: /etc/sudoers
+#     regexp: "splunk ALL"
+#     line: "splunk ALL=(ALL) NOPASSWD:ALL"
+
+- import_tasks: install.yml
+  name: Install stuff
+  tags:
+    - dependencies
+    - install
+    - appinspect
+    - slim
+
+- name: Write package processing file
+  copy:
+    src: entrypoint.sh
+    dest: "/entrypoint.sh"
+    backup: "yes"
+    mode: "u=rwx,go=rx"

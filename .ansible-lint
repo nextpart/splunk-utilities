@@ -1,0 +1,9 @@
+---
+skip_list:
+  - '106'
+
+exclude_paths:
+  - .pre-commit-config.yaml
+  - .gitpod.yml
+  - azure-pipelines.yml
+  - "~/.ansible"

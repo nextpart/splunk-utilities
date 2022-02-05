@@ -1,0 +1,50 @@
+---
+- name: Install python dependencies via apt
+  become: true
+  apt:
+    name:
+      # - python3.8
+      # - python3.8-dev
+      - python-setuptools
+      - python3-setuptools
+      - python3-pip
+      - build-essential
+      - libmagic1
+      - zlib1g-dev
+      - libjpeg-dev
+    state: present
+    autoremove: true
+  # when: ansible_os_family == 'Debian'
+  tags:
+    - python
+    - dependencies
+
+# - name: Python 3.8 as python3 and python binary
+#   shell: |
+#     rm -f /usr/bin/python /usr/bin/python3
+#     cp -f /usr/bin/python3.8 /usr/bin/python3 ;
+#     cp -f /usr/bin/python3.8 /usr/bin/python
+
+- name: Install/update python dependencies
+  pip:
+    extra_args: --upgrade
+    name:
+      - pip
+      - setuptools
+
+- name: Install splunk-appinspect and related python packages
+  pip:
+    extra_args: --upgrade
+    name:
+      - splunk-appinspect==2.14.0
+      - junit2html
+  tags:
+    - utils
+    - appinspect
+
+- name: Install splunk-packaging using remote protocol
+  pip:
+    name: "{{ packaging_url }}"
+  tags:
+    - utils
+    - packaging

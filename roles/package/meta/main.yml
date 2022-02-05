@@ -1,0 +1,16 @@
+galaxy_info:
+  author: Michael Bischof
+  description: Splunk packaging and validation service
+  company: Nextpart Security Intelligence GmbH
+  license: GPL-3.0-only
+  min_ansible_version: 2.1
+  platforms:
+    - name: Ubuntu
+      version:
+        - all
+    - name: Debian
+      version:
+        - all
+  galaxy_tags: []
+
+dependencies: []

@@ -1,0 +1,44 @@
+---
+# Author: Michael Bischof <michael@nextpart.io>
+# Organization: Nextpart Security Intelligence GmbH
+name: $(Date:yyyyMMdd)$(Rev:.r) - Image builds
+
+variables:
+  - group: general
+
+trigger:
+  branches:
+    include:
+      - main
+      - dev
+
+schedules:
+  - cron: "0 0 * * SUN"
+    displayName: Weekly build
+    branches:
+      include:
+        - main
+
+pool: $(agentPool)
+
+jobs:
+  - job: ImageBuild
+    strategy:
+      matrix:
+        package:
+          playbook: "package"
+
+    steps:
+      - checkout: self
+        fetchDepth: 1
+
+      - bash: |
+          python3 -m pip install --upgrade pip setuptools
+          python3 -m pip install ansible
+        displayName: Install dependencies
+
+      - bash: |
+          ansible-galaxy install -r roles/requirements.yml
+          packer init docker
+          packer build --var-file=packer/$(playbook).pkrvars.hcl packer/generic.pkr.hcl
+        displayName: Build docker images

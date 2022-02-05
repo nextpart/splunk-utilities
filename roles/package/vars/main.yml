@@ -1,0 +1,5 @@
+---
+# vars file for packager
+
+packaging_url: "https://download.splunk.com/misc/packaging-toolkit/splunk-packaging-toolkit-1.0.1.tar.gz"
+appinspect_url: "https://download.splunk.com/misc/appinspect/splunk-appinspect-latest.tar.gz"
