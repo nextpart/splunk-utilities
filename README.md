@@ -71,7 +71,7 @@ docker run -it \
     -v "`pwd`/apps/APP_FOLDER_NAME:/apps/APP_FOLDER_NAME" \
     -v "`pwd`/dist:/dist" \
     -e "MYUSER=`id -u`" \
-    splunk-package:latest
+    nextpart/splunk-package:latest
 ```
 
 It is also possible to map several apps into the directory and process them in bulk as
@@ -89,7 +89,12 @@ parameters can be passed for various use cases.
   for Azure Pipelines CI/CD purposes)
 - `SPL_IGNORE`: Files (& wildcards) to be ignored in packaging process.
 
-### Splunk standalone EventGen (_`eventgen`_)
+### Splunk standalone EventGen
+
+**Image**:
+[_`nextpart/splunk-eventgen:latest`_](https://hub.docker.com/r/nextpart/splunk-eventgen)
+
+![eventgen_image_size](https://img.shields.io/docker/image-size/nextpart/splunk-eventgen/latest)
 
 This image (resp. role) provides you a standalone service or installation of splunk
 [eventgen], allowing you to send sample data to various instances and utilize it's API.
@@ -98,7 +103,7 @@ This image (resp. role) provides you a standalone service or installation of spl
 
 ## Contribution
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/michael-nextpart/remote-development)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/nextpart/splunk-utilities)
 or use as
 [![VS Code Container](https://img.shields.io/static/v1?label=VS+Code&message=Container&logo=visualstudiocode&color=007ACC&logoColor=007ACC&labelColor=2C2C32)](https://open.vscode.dev/microsoft/vscode)
 
@@ -107,7 +112,7 @@ you would like to change.
 
 Please make sure to update tests as appropriate.
 
-## Roadmap / ToDo
+### Roadmap / ToDo
 
 in progress ... waiting for suggestions
 
