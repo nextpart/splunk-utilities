@@ -14,10 +14,23 @@
       - libjpeg-dev
     state: present
     autoremove: true
-  # when: ansible_os_family == 'Debian'
+  when: ansible_os_family == 'Debian'
   tags:
     - python
     - dependencies
+
+- name: Install package without using cache
+  community.general.apk:
+    name:
+      - gcc
+      - musl-dev
+      - bash
+      - libmagic
+      - zlib-dev
+      - jpeg-dev
+    state: latest
+    no_cache: true
+  when: ansible_os_family == 'Alpine'
 
 # - name: Python 3.8 as python3 and python binary
 #   shell: |

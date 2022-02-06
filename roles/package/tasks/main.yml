@@ -7,7 +7,7 @@
     autoremove: true
     update_cache: true
     force_apt_get: true
-  # when: ansible_os_family == "Debian"
+  when: ansible_os_family == "Debian"
   tags:
     - update
 

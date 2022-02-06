@@ -5,7 +5,7 @@ variables {
   docker_image_tag  = "latest"
   ansible_playbook  = "base"
   docker_image_name = "test"
-  docker_base_image = "python:3.8-slim-buster"
+  docker_base_image = "python:3.8-alpine"
   docker_registry   = "local"
 }
 

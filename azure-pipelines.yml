@@ -45,7 +45,7 @@ jobs:
             --var='ansible_playbook=$(playbook)' \
             --var='docker_image_name=splunk-$(playbook)' \
             --var='docker_image_tag=latest' \
-            --var='docker_registry=$(dockerHubRegistry)' \
+            --var='docker_registry=nextpart' \
             generic.pkr.hcl
         displayName: Build docker images
 
@@ -53,7 +53,7 @@ jobs:
         displayName: Push image to DockerHub
         inputs:
           containerRegistry: $(dockerRegistryServiceConnection)
-          repository: "splunk-$(playbook)"
+          repository: "nextpart/splunk-$(playbook)"
           command: push
           tags: |
             latest
