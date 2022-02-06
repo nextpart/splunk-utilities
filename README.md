@@ -53,14 +53,18 @@ docker_image_name = "splunk-<something>"
 docker_registry   = "<registryname>"
 ```
 
-### Splunk Application Packaging (_`package`_)
+### Splunk Application Packaging
 
-This [packaging image](https://hub.docker.com/r/nextpart/splunk-package) (resp. role) is
-used, as the name suggests, to [package][packaging] and [validate][appinspect] apps. For
-this purpose, there is the `/apps` folder (resp. `APP_DIR`), where the **source code of
-the application** is supplied, and the `/dist` folder or distribution (resp. `PKG_DIR`),
-where the **finished package with the test reports** is then located when the container
-is finished with its task.
+**Image**:
+[_`nextpart/splunk-package:latest`_](https://hub.docker.com/r/nextpart/splunk-package)
+
+![package_image_size](https://img.shields.io/docker/image-size/nextpart/splunk-package/latest)
+
+This packaging image (resp. role) is used, as the name suggests, to [package][packaging]
+and [validate][appinspect] apps. For this purpose, there is the `/apps` folder (resp.
+`APP_DIR`), where the **source code of the application** is supplied, and the `/dist`
+folder or distribution (resp. `PKG_DIR`), where the **finished package with the test
+reports** is then located when the container is finished with its task.
 
 ```bash
 docker run -it \
@@ -108,7 +112,6 @@ Please make sure to update tests as appropriate.
 in progress ... waiting for suggestions
 
 - [ ] Standalone eventgen service
-
 
 ## References
 
