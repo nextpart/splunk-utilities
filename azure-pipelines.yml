@@ -5,6 +5,7 @@ name: $(Date:yyyyMMdd)$(Rev:.r) - Image builds
 
 variables:
   - group: general
+  - group: docker
 
 trigger:
   branches:
@@ -40,5 +41,19 @@ jobs:
       - bash: |
           ansible-galaxy install -r roles/requirements.yml
           packer init docker
-          packer build --var-file=packer/$(playbook).pkrvars.hcl packer/generic.pkr.hcl
+          packer build \
+            --var='ansible_playbook=$(playbook)' \
+            --var='docker_image_name=splunk-$(playbook)' \
+            --var='docker_image_tag=latest' \
+            --var='docker_registry=$(dockerHubRegistry)' \
+            generic.pkr.hcl
         displayName: Build docker images
+
+      - task: Docker@2
+        displayName: Push image to DockerHub
+        inputs:
+          containerRegistry: $(dockerRegistryServiceConnection)
+          repository: "splunk-$(playbook)"
+          command: push
+          tags: |
+            latest

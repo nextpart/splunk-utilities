@@ -1,14 +1,12 @@
 # Author: Michael Bischof <michael@nextpart.io>
 # Organization: Nextpart Security Intelligence GmbH
-locals {
-  docker_image_tag = "latest"
-  docker_base_image = "python:3.8-buster"
-  docker_registry = "local"
-}
 
 variables {
+  docker_image_tag  = "latest"
   ansible_playbook  = "base"
   docker_image_name = "test"
+  docker_base_image = "python:3.8-slim-buster"
+  docker_registry   = "local"
 }
 
 packer {
@@ -26,7 +24,7 @@ source "docker" "bootstrap" {
     "WORKDIR /",
     "ENTRYPOINT ./entrypoint.sh"
   ]
-  image  = "${local.docker_base_image}"
+  image  = "${var.docker_base_image}"
   commit = true
 }
 
@@ -34,7 +32,7 @@ build {
   sources = ["source.docker.bootstrap"]
 
   provisioner "shell" {
-    inline = ["echo Running ${local.docker_base_image} Docker image."]
+    inline = ["echo Running ${var.docker_base_image} Docker image."]
   }
 
   provisioner "ansible" {
@@ -44,8 +42,8 @@ build {
   }
 
   post-processor "docker-tag" {
-    repository = "${local.docker_registry}/${var.docker_image_name}"
-    tags       = ["${local.docker_image_tag}", "latest"]
+    repository = "${var.docker_registry}/${var.docker_image_name}"
+    tags       = ["${var.docker_image_tag}"]
   }
 
   # post-processor "docker-push" {

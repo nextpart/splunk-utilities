@@ -24,7 +24,7 @@ tasks:
 
     command: |
       zsh ;
-      echo "Welcome to the preconfigured development environment! ✌️"
+      echo "Welcome to the pre-configured development environment! ✌️"
 
 vscode:
   extensions:
