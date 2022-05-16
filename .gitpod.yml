@@ -11,8 +11,8 @@ github:
 image:
   file: .devcontainer/gitpod.Dockerfile
   context: ./.devcontainer
-checkoutLocation: "gitpod-experiment"
-workspaceLocation: "gitpod-experiment"
+checkoutLocation: "splunk-utilities"
+workspaceLocation: "splunk-utilities"
 tasks:
   - before: |
       ansible-galaxy role install -r ./.devcontainer/ansible/roles/requirements.yml
@@ -23,7 +23,7 @@ tasks:
 
     command: |
       zsh ;
-      echo "Welcome to the pre-configured development environment! ✌️"
+      echo "Welcome to the pre-configured development environment for splunk utilities! ✌️"
 
 vscode:
   extensions:
