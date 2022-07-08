@@ -49,7 +49,7 @@
   pip:
     extra_args: --upgrade
     name:
-      - splunk-appinspect==2.14.0
+      - splunk-appinspect==2.21.0
       - junit2html
   tags:
     - utils
